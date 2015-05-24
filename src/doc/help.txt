@@ -1,0 +1,9 @@
+1.本系统为mysql数据库,如需更改请在config/config.properties中配置;
+2.测试数据在com.exp.util.InitialData.java中,请run as-->java application生成测试数据;
+3.email请在config/mail.properties中配置,测试类在test/com.exp.test/MailTest.java;
+4.请注意你的email密码仅仅是密码还是独立密码(本人邮箱密码就是独立密码，搞了好久才发现);
+
+5.本系统只适用于本人的客户需求,其中会有很多不正统的写法,请酌情借鉴.
+6.欢迎留下您宝贵的建议和意见.
+
+7.项目用

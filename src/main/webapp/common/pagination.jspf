@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<div class="row">
+
+	<div class="col-sm-4" style="margin-left: 15px;">
+		显示${currentPage}/${pageCount }总数${recordCount }
+
+		<select id="pageSize"  onChange="changePageSize(this.value);"
+			class="form-control " style="display:inline-block;width:50px;padding:3px;margin-left:10px;height:28px;">
+			<option <s:if test='pageSize==5'>selected</s:if>>5</option>
+			<option <s:if test='pageSize==10'>selected</s:if>>10</option>
+			<option <s:if test='pageSize==20'>selected</s:if>>20</option>
+			<option <s:if test='pageSize==50'>selected</s:if>>50</option>
+
+		</select>
+
+	</div>
+
+	<div class="col-sm-4 pull-right" >
+		<div >
+			<ul class="pagination pull-right" style="margin: 0px 15px 0px 0px;">
+				<s:if test='currentPage==1'>
+					<li class="disabled"><a href="javascript: void(0)"
+						aria-label="Previous"> <span aria-hidden="true">首页</span>
+					</a></li>
+
+					<li class="disabled"><a href="javascript: void(0)"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+
+				</s:if>
+				<s:else>
+					<li><a href="javascript: gotoPage(1)" aria-label="Previous">
+							<span aria-hidden="true">首页</span>
+					</a></li>
+
+					<li><a href="javascript: gotoPage(${currentPage-1})"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a></li>
+				</s:else>
+				<s:iterator begin="%{beginPageIndex}" end="%{endPageIndex}"
+					var="num">
+
+					<s:if test='#num == currentPage'>
+						<li class="active"><a href="javascript:void(0);">${num}</a></li>
+					</s:if>
+					<s:else>
+
+						<li><a href="javascript: gotoPage(${num})">${num}</a></li>
+					</s:else>
+
+				</s:iterator>
+				<s:if test='currentPage==pageCount'>
+					<li class="disabled"><a
+						href="javascript: void(0)" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+					</a></li>
+					<li class="disabled"><a
+						href="javascript: void(0)" aria-label="Next"> <span
+							aria-hidden="true">末页</span>
+					</a></li>
+
+				</s:if>
+				<s:else>
+					<li><a href="javascript: gotoPage(${currentPage+1})" aria-label="Next"> <span
+							aria-hidden="true">&raquo;</span>
+					</a></li>
+					<li><a href="javascript: gotoPage(${pageCount})" aria-label="Next"> <span
+							aria-hidden="true">末页</span>
+					</a></li>
+				</s:else>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	function changePageSize(v) {
+		$("input[name='pageSize']").val(v);
+		$("input[name='pageJumpType']").val(1);
+		$("input[name='pageNum']").val(1);
+		$('#page_form').submit();
+	};
+	function gotoPage(pageNum) {
+		// window.location.href = "forum_show.action?id=${id}&pageNum=" + pageNum;
+		$("input[name='pageJumpType']").val(1);
+		
+		$("input[name='pageNum']").val(pageNum);
+		$('#page_form').submit();
+	};
+</script>

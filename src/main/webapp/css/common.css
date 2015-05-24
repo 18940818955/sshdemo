@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+body {
+	maigin: 0;
+	padding: 0;
+	background: rgba(0, 0, 0, 0) url("../img/background.jpg") repeat scroll 0 0;
+}
+.navbar.navbar-default{
+	background-color:  #CED9FF;
+}
+
+@media ( min-width : 768px) {
+	.toptop {
+		height: 40px;
+	}
+	.toptop1 {
+		height: 10px;
+	}
+}

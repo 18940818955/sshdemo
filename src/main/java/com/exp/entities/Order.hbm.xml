@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-5-14 13:28:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.exp.entities.Order" table="T_ORDER"
+		dynamic-update="true">
+		<id name="id" type="java.lang.String">
+			<column name="ID" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="status" class="com.exp.entities.Basedata"
+			fetch="join">
+			<column name="STATUS" />
+		</many-to-one>
+		<property name="createTime" type="java.util.Date">
+			<column name="CREATETIME" />
+		</property>
+		<property name="updateTime" type="java.util.Date">
+			<column name="UPDATETIME" />
+		</property>
+		<property name="deliverTime" type="java.util.Date">
+			<column name="DELIVERTIME" />
+		</property>
+		<property
+			formula="(select sum(i.price*i.amount) from t_item i where i.orderid = id)"
+			name="totalPrice" type="double">
+		</property>
+		<property
+			formula="(select GROUP_CONCAT((concat(i.PRODUCTNAME,'  数量:',i.amount))) from t_item i where i.orderid= id and i.amount>0)"
+			name="productName" type="java.lang.String">
+		</property>
+		<many-to-one name="createUser" class="com.exp.entities.User"
+			fetch="join">
+			<column name="CREATEUSER" />
+		</many-to-one>
+		<many-to-one name="updateUser" class="com.exp.entities.User"
+			fetch="join">
+			<column name="UPDATEUSER" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

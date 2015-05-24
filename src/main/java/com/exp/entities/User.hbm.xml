@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-5-4 16:27:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.exp.entities.User" table="T_USER" dynamic-insert="true" dynamic-update="true">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="userid" type="java.lang.String" unique="true">
+            <column name="USERID" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="department" type="java.lang.Integer">
+            <column name="DEPARTMENT" />
+        </property>
+        <property name="position" type="java.lang.String">
+            <column name="POSITION" />
+        </property>
+        <property name="mobile" type="java.lang.String">
+            <column name="MOBILE" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="weixinid" type="java.lang.String">
+            <column name="WEIXINID" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="deleteFlag" type="java.lang.String">
+            <column name="DELETEFLAG" />
+        </property>
+        <property name="activeFlag" type="java.lang.String">
+            <column name="ACTIVEFLAG" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+        <many-to-one name="createUser" class="com.exp.entities.User" fetch="join">
+            <column name="CREATEUSER" />
+        </many-to-one>
+        <many-to-one name="updateUser" class="com.exp.entities.User" fetch="join">
+            <column name="UPDATEUSER" />
+        </many-to-one>
+        <set name="roles" table="T_USER_ROLE" inverse="false" lazy="true">
+			<key>
+				<column name="user_id" />
+			</key>
+			<many-to-many class="com.exp.entities.Role" column="role_id"></many-to-many>
+		</set>
+        <set name="products" table="T_PRODUCT_MODEL" inverse="false" lazy="true">
+			<key>
+				<column name="user_id" />
+			</key>
+			<many-to-many class="com.exp.entities.Product" column="product_id"></many-to-many>
+		</set>
+    </class>
+</hibernate-mapping>

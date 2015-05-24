@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+    <footer class="footer col-xs-12">
+      <div class="text-center">
+        <p class="text-muted">© 2015 易佰匹科技 （大连） 有限公司.</p>
+      </div>
+    </footer>
+
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/common.js"></script>
+
+<script>
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>

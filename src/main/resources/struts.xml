@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.action.excludePattern" value="/logout,/login"></constant>
+
+
+	<package name="default" namespace="/" extends="struts-default">
+		<global-results>
+			<result name="sessionOut">/views/sessionOut.jsp</result>
+			<result name="errorPage">/views/errorPage.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="accessException"
+				exception="org.springframework.security.AccessDeniedException" name="accessException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<action name="changePwd">
+			<result>/views/current/changePwd.jsp</result>
+		</action>
+		<action name="product_*" method="{1}" class="productAction">
+			<result name="list">/views/product/list.jsp</result>
+			<result name="editUI">/views/product/editUI.jsp</result>
+			<result name="tolist" type="redirectAction">product_list</result>
+			<result name="modelUI" >/views/product/modelUI.jsp</result>
+			<result name="toModelUI" type="redirectAction">product_initProductModel</result>
+		</action>
+		<action name="order_*" method="{1}" class="orderAction">
+			<result name="list">/views/order/list.jsp</result>
+			<result name="editUI">/views/order/editUI.jsp</result>
+			<result name="tolist" type="redirectAction">order_list</result>
+			<result name="report" >/report.jsp</result>
+			<result name="addUI">/views/order/addUI.jsp</result>
+			<result name="info">/views/order/info.jsp</result>
+		</action>
+		<action name="user_*" method="{1}" class="userAction">
+			<result name="list">/views/user/list.jsp</result>
+			<result name="editUI">/views/user/editUI.jsp</result>
+			<result name="tolist" type="redirectAction">user_list</result>
+			<result name="info">/views/current/userinfo.jsp</result>
+			<result name="logout" type="redirect">/logout</result>
+		</action>
+	</package>
+
+
+</struts>

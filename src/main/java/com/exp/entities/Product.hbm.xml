@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-5-14 13:28:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.exp.entities.Product" table="T_PRODUCT">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="productName" type="java.lang.String">
+            <column name="productName" />
+        </property>
+        <property name="price" type="double">
+            <column name="PRICE" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+        <many-to-one name="createUser" class="com.exp.entities.User" fetch="join">
+            <column name="CREATEUSER" />
+        </many-to-one>
+        <many-to-one name="updateUser" class="com.exp.entities.User" fetch="join">
+            <column name="UPDATEUSER" />
+        </many-to-one>
+        
+        <set name="users" table="T_PRODUCT_MODEL" inverse="false" lazy="true">
+			<key>
+				<column name="product_id" />
+			</key>
+			<many-to-many class="com.exp.entities.User" column="user_id"></many-to-many>
+		</set>
+    </class>
+</hibernate-mapping>

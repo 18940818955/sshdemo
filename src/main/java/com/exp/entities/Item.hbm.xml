@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-5-14 13:28:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.exp.entities.Item" table="T_ITEM" dynamic-update="true">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="price" type="double">
+            <column name="PRICE" />
+        </property>
+        <property name="amount" type="double">
+            <column name="AMOUNT" />
+        </property>
+        <property name="realAmount" type="double">
+            <column name="REALAMOUNT" />
+        </property>
+        <property name="receiveAmount" type="double">
+            <column name="RECEIVEAMOUNT" />
+        </property>
+        <many-to-one name="order" class="com.exp.entities.Order" fetch="join" >
+            <column name="ORDERID" />
+        </many-to-one>
+        <property name="productName" type="java.lang.String">
+            <column name="PRODUCTNAME" />
+        </property>
+        <property name="reason" type="java.lang.String">
+            <column name="REASON" />
+        </property>
+    </class>
+</hibernate-mapping>
